@@ -15,14 +15,14 @@ end
 sharedicons   = shared .. "/icons"
 sharedthemes  = shared .. "/themes"
 themes        = config .. "/themes"
-themename     = "/matrix"
+themename     = "/chrysalis"
 if not awful.util.file_readable(themes .. themename .. "/theme.lua") then
   themes = sharedthemes
 end
 themedir      = themes .. themename
 
-wallpaper1    = themedir .. "/background.jpg"
-wallpaper2    = themedir .. "/background.png"
+wallpaper1    = themedir .. "/background.png"
+wallpaper2    = themedir .. "/background.jpg"
 wallpaper3    = sharedthemes .. "/zenburn/zenburn-background.png"
 wallpaper4    = sharedthemes .. "/default/background.png"
 wpscript      = home .. "/.wallpaper"
@@ -40,7 +40,7 @@ else
 end
 --}}}
 
-theme.font          = "snap"
+theme.font          = "10"
 
 theme.bg_normal     = "#171717"
 theme.bg_focus      = "#171717"
@@ -49,7 +49,7 @@ theme.bg_minimize   = "#171717"
 
 theme.hilight       = "#ffcc44"
 
-theme.fg_normal     = "#449900"
+theme.fg_normal     = "#50BC00"
 theme.fg_focus      = "#66FF00"
 theme.fg_urgent     = "#cc0000"
 
@@ -62,8 +62,8 @@ theme.border_normal = "#338000"
 theme.border_focus  = "#66FF00"
 theme.border_marked = "#66FF00"
 
-theme.menu_height   = "10"
-theme.menu_width    = "100"
+theme.menu_height   = "15"
+theme.menu_width    = "150"
 
 theme.taglist_squares = "true"
 
