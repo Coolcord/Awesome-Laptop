@@ -10,10 +10,9 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
--- Volume Widget
-require("volume")
 -- Vicious
 vicious = require("vicious")
+require("volume")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -122,12 +121,18 @@ separator = wibox.widget.textbox()
 separator:set_text(" | ")
 -- Create a textclock widget
 mytextclock = awful.widget.textclock12()
+-- Create a battery widget
+battwidget = wibox.widget.textbox()
+vicious.register(battwidget, vicious.widgets.bat, "B: $2% $3", 60, "BAT0")
+-- Create a volume widget
+-- volwidget = wibox.widget.textbox()
+-- vicious.register(volwidget, vicious.widgets.volume, "V: $1% $2", 2, "Master")
 -- Create a memory widget
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, "M: $1%", 13)
 -- Create a cpu widget
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, "C: $1%")
+vicious.register(cpuwidget, vicious.widgets.cpu, "C: $1%", 3)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -210,7 +215,10 @@ for s = 1, screen.count() do
     right_layout:add(separator)
     right_layout:add(memwidget)
     right_layout:add(separator)
+    -- right_layout:add(volwidget)
     right_layout:add(volume_widget)
+    right_layout:add(separator)
+    right_layout:add(battwidget)
     right_layout:add(separator)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
