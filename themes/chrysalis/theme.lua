@@ -86,6 +86,8 @@ theme.layout_floating = themedir .. "/layouts/floating.png"
 theme.layout_max = themedir .. "/layouts/max.png"
 theme.layout_spiral = themedir .. "../default/layouts/spiralw.png"
 theme.layout_tilebottom = themedir .. "/layouts/tilebottom.png"
+theme.layout_tiletop = themedir .. "/layouts/tiletop.png"
 theme.layout_tile = themedir .. "/layouts/tile.png"
+theme.layout_tileleft = themedir .. "/layouts/tileleft.png"
 
 return theme

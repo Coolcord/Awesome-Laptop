@@ -63,7 +63,6 @@ local layouts =
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
@@ -118,14 +117,17 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- {{{ Wibox
+-- Create a separator widget
+separator = wibox.widget.textbox()
+separator:set_text(" | ")
 -- Create a textclock widget
 mytextclock = awful.widget.textclock12()
 -- Create a memory widget
 memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, "M: $1%|", 13)
+vicious.register(memwidget, vicious.widgets.mem, "M: $1%", 13)
 -- Create a cpu widget
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, "C: $1%|")
+vicious.register(cpuwidget, vicious.widgets.cpu, "C: $1%")
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -205,8 +207,11 @@ for s = 1, screen.count() do
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(cpuwidget)
+    right_layout:add(separator)
     right_layout:add(memwidget)
+    right_layout:add(separator)
     right_layout:add(volume_widget)
+    right_layout:add(separator)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
