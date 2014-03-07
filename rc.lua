@@ -291,8 +291,23 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
-
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
+
+    -- Map some more keys that are missing
+    awful.key({ "Mod1" }, "F1", function () awful.util.spawn("xdotool key --clearmodifiers XF86AudioPrev") end),
+    awful.key({ "Mod1" }, "F2", function () awful.util.spawn("xdotool key --clearmodifiers XF86AudioNext") end),
+    awful.key({ "Mod1" }, "F3", function () awful.util.spawn("xdotool key --clearmodifiers XF86AudioPlay") end),
+    awful.key({ "Mod1" }, "F4", function () awful.util.spawn("xdotool key --clearmodifiers XF86AudioStop") end),
+    awful.key({ "Mod1" }, "F6", function () awful.util.spawn("xbacklight -dec 5") end),
+    awful.key({ "Mod1" }, "F7", function () awful.util.spawn("xbacklight -inc 5") end),
+    awful.key({ "Mod1" }, "F8", function () awful.util.spawn("amixer set Master toggle") end),
+    awful.key({ "Mod1" }, "F9", function () awful.util.spawn("amixer set Master 2%-") end),
+    awful.key({ "Mod1" }, "F10", function () awful.util.spawn("amixer set Master 2%+") end),
+    awful.key({ "Mod1" }, "\\", function () awful.util.spawn("sh -c 'sleep 0.1; xdotool key --clearmodifiers Delete'") end),
+    awful.key({ "Mod1" }, "Left", function () awful.util.spawn("sh -c 'sleep 0.1; xdotool key --clearmodifiers Home'") end),
+    awful.key({ "Mod1" }, "Right", function () awful.util.spawn("sh -c 'sleep 0.1; xdotool key --clearmodifiers End'") end),
+    awful.key({ "Mod1" }, "Up", function () awful.util.spawn("sh -c 'sleep 0.1; xdotool key --clearmodifiers Page_Up'") end),
+    awful.key({ "Mod1" }, "Down", function () awful.util.spawn("sh -c 'sleep 0.1; xdotool key --clearmodifiers Page_Down'") end),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),
