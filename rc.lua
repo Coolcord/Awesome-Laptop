@@ -298,6 +298,7 @@ globalkeys = awful.util.table.join(
     awful.key({ "Mod1" }, "F2", function () awful.util.spawn("xdotool key --clearmodifiers XF86AudioNext", false) end),
     awful.key({ "Mod1" }, "F3", function () awful.util.spawn("xdotool key --clearmodifiers XF86AudioPlay", false) end),
     awful.key({ "Mod1" }, "F4", function () awful.util.spawn("xdotool key --clearmodifiers XF86AudioStop", false) end),
+    awful.key({ "Mod1" }, "F5", function () awful.util.spawn("scrot -e 'mv $f ~/Pictures/screenshots/ 2>/dev/null'", false) end),
     awful.key({ "Mod1" }, "F6", function () awful.util.spawn("xbacklight -dec 5", false) end),
     awful.key({ "Mod1" }, "F7", function () awful.util.spawn("xbacklight -inc 5", false) end),
     awful.key({ "Mod1" }, "F8", function () awful.util.spawn("amixer set Master toggle", false) end),
