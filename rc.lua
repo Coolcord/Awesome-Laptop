@@ -13,12 +13,9 @@ local menubar = require("menubar")
 -- Vicious
 vicious = require("vicious")
 require("volume")
-<<<<<<< HEAD
 -- Screenful
 require("awful.remote")
 require("screenful")
-=======
->>>>>>> 5fcc7b0c101657579544e57b192b469954a228ff
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -266,11 +263,8 @@ globalkeys = awful.util.table.join(
             if client.focus then client.focus:raise() end
         end),
     awful.key({ modkey,           }, "a", function () mymainmenu:show() end),
-<<<<<<< HEAD
     awful.key({ modkey }, "b", function () mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible end),
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xscreensaver-command -lock", false) end),
-=======
->>>>>>> 5fcc7b0c101657579544e57b192b469954a228ff
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
