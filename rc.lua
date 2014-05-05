@@ -129,12 +129,12 @@ mytextclock = textclock12()
 -- Create a battery widget
 battwidget = wibox.widget.textbox()
 vicious.register(battwidget, vicious.widgets.bat, function (widget, args)
-    batteryText = 'B: ' .. args[2] .. '% ' .. args[3]
     if args[2] <= 15 then
       batteryText = '<span color="red">B: ' .. args[2] .. '% ' .. args[3] .. '</span>'
-      naughty.notify({ text="Battery is low! " .. args[2] .. "% remaining.", fg="#ff0000", position = "top_right"
+      naughty.notify({ text="Battery is low! " .. args[2] .. "% remaining.", fg="#ff0000", position = "top_right" })
+    else
+      batteryText = 'B: ' .. args[2] .. '% ' .. args[3]
       -- run = function () awful.util.spawn("wicd-client") end
-     })
     end
     return batteryText
     end, 60, "BAT0")
