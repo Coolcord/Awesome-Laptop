@@ -10,6 +10,8 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+-- Textclock
+require("textclock12");
 -- Vicious
 vicious = require("vicious")
 require("volume")
@@ -123,7 +125,7 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 separator = wibox.widget.textbox()
 separator:set_text(" | ")
 -- Create a textclock widget
-mytextclock = awful.widget.textclock12()
+mytextclock = textclock12()
 -- Create a battery widget
 battwidget = wibox.widget.textbox()
 vicious.register(battwidget, vicious.widgets.bat, "B: $2% $3", 60, "BAT0")
