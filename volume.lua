@@ -1,8 +1,8 @@
 local wibox = require("wibox")
 local awful = require("awful")
  
-volume_widget = wibox.widget.textbox()
-volume_widget:set_align("right")
+volumewidget = wibox.widget.textbox()
+volumewidget:set_align("right")
  
 function update_volume(widget)
    local fd = io.popen("amixer sget Master")
@@ -26,9 +26,9 @@ function update_volume(widget)
    widget:set_markup(volume)
 end
  
-update_volume(volume_widget)
+update_volume(volumewidget)
  
 mytimer = timer({ timeout = 2 })
-mytimer:connect_signal("timeout", function () update_volume(volume_widget) end)
+mytimer:connect_signal("timeout", function () update_volume(volumewidget) end)
 mytimer:start()
 
