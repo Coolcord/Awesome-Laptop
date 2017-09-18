@@ -196,6 +196,7 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 -- @DOC_FOR_EACH_SCREEN@
+wiboxes = {  }
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -221,11 +222,11 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- @DOC_WIBAR@
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    wiboxes[s] = awful.wibar({ position = "top", screen = s })
 
     -- @DOC_SETUP_WIDGETS@
     -- Add widgets to the wibox
-    s.mywibox:setup {
+    wiboxes[s]:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
@@ -272,6 +273,9 @@ globalkeys = awful.util.table.join(
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
+    awful.key({ modkey,           }, "b", function ()
+        wiboxes[mouse.screen].visible = not wiboxes[mouse.screen].visible
+    end),
 
     awful.key({ modkey,           }, "j",
         function ()
