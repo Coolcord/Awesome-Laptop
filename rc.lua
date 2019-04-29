@@ -50,13 +50,13 @@ end
 -- {{{ Variable definitions
 -- @DOC_LOAD_THEME@
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(awful.util.get_themes_dir() .. "chrysalis/theme.lua")
+beautiful.init(awful.util.get_themes_dir() .. "coolcord/theme.lua")
 
 -- @DOC_DEFAULT_APPLICATIONS@
 -- This is used later as the default terminal and editor to run.
-terminal = "terminator"
-web_browser = "chromium"
-editor = os.getenv("EDITOR") or "nano"
+terminal = "konsole"
+web_browser = "firefox"
+editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -70,13 +70,11 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.max,
     awful.layout.suit.floating,
+    awful.layout.suit.max,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top
+    awful.layout.suit.fair.horizontal
 }
 -- }}}
 
@@ -123,11 +121,9 @@ vicious.register(battwidget, vicious.widgets.bat, function (widget, args)
     end
     run = function () awful.util.spawn("wicd-client") end
     return batteryText
-    end, 60, "BAT0")
--- Create a volume widget
--- volwidget = wibox.widget.textbox()
--- vicious.register(volwidget, vicious.widgets.volume, "V: $1% $2", 2, "Master")
--- Create a memory widget
+    end, 60, "BAT1")
+
+    -- Create a memory widget
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, "M: $1%", 13)
 -- Create a cpu widget
@@ -313,6 +309,8 @@ globalkeys = awful.util.table.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey,           }, "c", function () awful.spawn(terminal) end,
+              {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey,           }, "w", function () awful.spawn(web_browser) end,
               {description = "open a web browser", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
@@ -349,22 +347,13 @@ globalkeys = awful.util.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Map some more keys that are missing
-    awful.key({ "Mod1" }, "F1", function () awful.util.spawn("xdotool key --clearmodifiers XF86AudioPrev", false) end),
-    awful.key({ "Mod1" }, "F2", function () awful.util.spawn("xdotool key --clearmodifiers XF86AudioNext", false) end),
-    awful.key({ "Mod1" }, "F3", function () awful.util.spawn("xdotool key --clearmodifiers XF86AudioPlay", false) end),
-    awful.key({ "Mod1" }, "F4", function () awful.util.spawn("xdotool key --clearmodifiers XF86AudioStop", false) end),
-    awful.key({ "Mod1" }, "F5", function () awful.util.spawn("scrot -e 'mv $f ~/Pictures/screenshots/ 2>/dev/null'", false) end),
-    awful.key({ "Mod1" }, "F6", function () awful.util.spawn("xbacklight -dec 5", false) end),
-    awful.key({ "Mod1" }, "F7", function () awful.util.spawn("xbacklight -inc 5", false) end),
-    awful.key({ "Mod1" }, "F8", function () awful.util.spawn("amixer set Master toggle", false) end),
-    awful.key({ "Mod1" }, "F9", function () awful.util.spawn("amixer set Master 2%-", false) end),
-    awful.key({ "Mod1" }, "F10", function () awful.util.spawn("amixer set Master 2%+ unmute", false) end),
-    awful.key({ "Mod1" }, "=", function () awful.util.spawn("sh -c 'sleep 0.25; xdotool key --clearmodifiers F11'", false) end),
-    awful.key({ "Mod1" }, "\\", function () awful.util.spawn("sh -c 'sleep 0.25; xdotool key --clearmodifiers Delete'", false) end),
-    awful.key({ "Mod1" }, "Left", function () awful.util.spawn("sh -c 'sleep 0.25; xdotool key --clearmodifiers Home'", false) end),
-    awful.key({ "Mod1" }, "Right", function () awful.util.spawn("sh -c 'sleep 0.25; xdotool key --clearmodifiers End'", false) end),
-    awful.key({ "Mod1" }, "Up", function () awful.util.spawn("sh -c 'sleep 0.25; xdotool key --clearmodifiers Page_Up'", false) end),
-    awful.key({ "Mod1" }, "Down", function () awful.util.spawn("sh -c 'sleep 0.25; xdotool key --clearmodifiers Page_Down'", false) end),
+    awful.key({}, "Print", function () awful.util.spawn("scrot -e 'mv $f ~/Pictures/Screenshots/ 2>/dev/null'", false) end),
+    awful.key({}, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -dec 5", false) end),
+    awful.key({}, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight -inc 5", false) end),
+    awful.key({}, "XF86AudioMute", function () awful.util.spawn("amixer set Master toggle", false) end),
+    awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 2%-", false) end),
+    awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 2%+ unmute", false) end),
+    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xscreensaver-command -lock", false) end),
 
     -- Prompt
     awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
