@@ -55,7 +55,8 @@ beautiful.init(awful.util.get_themes_dir() .. "coolcord/theme.lua")
 -- @DOC_DEFAULT_APPLICATIONS@
 -- This is used later as the default terminal and editor to run.
 terminal = "konsole"
-web_browser = "firefox"
+web_browser = "librewolf"
+rss_browser = "quiterss"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -313,6 +314,8 @@ globalkeys = awful.util.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey,           }, "w", function () awful.spawn(web_browser) end,
               {description = "open a web browser", group = "launcher"}),
+    awful.key({ modkey,           }, "q", function () awful.spawn(rss_browser) end,
+              {description = "open an rss browser", group = "launcher"}),
     awful.key({ modkey,           }, "s", function () awful.spawn("steam") end,
               {description = "open steam", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
